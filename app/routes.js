@@ -14,6 +14,10 @@ module.exports = (app, connection) => {
         res.render("signup.ejs");
     });
 
+    app.get('/profile', (req, res) => {
+        res.render("profile.ejs");
+    });
+
     app.get('/interview/:id', (req, res) => {    
         console.log("request query url\n" + req.query.url);
         

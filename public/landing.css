@@ -2,6 +2,9 @@
 	margin: 0;
 	padding: 0;
 }
+html {
+	scroll-behavior: smooth;
+  }
 body{
 	height: 100%;
 	width: 100%;
@@ -15,10 +18,10 @@ body{
 	margin-bottom: 50px;
 }
 
-.container-pink {
+#container-pink {
 	background-color: #ff7376;
 }
-.container-blue {
+#container-blue {
 	background-color: #62ACB5;
 	padding-bottom: 20px;
 }
@@ -34,8 +37,10 @@ li.nav {
 }
 a.nav {
 	color: white;
-	font-size: 15px;
+	font-size: 13px;
 	line-height: 30px;
+	font-weight: bold;
+	letter-spacing: 0.8px;
 }
 h1.it {
 	font-size: 130px;
@@ -59,4 +64,21 @@ h1.how {
 	text-align: center;
 	margin-top: 40px;
 	margin-bottom: 60px;
+}
+.glyphicon {
+	font-size: 90px;
+	text-align: center;
+}
+.home:hover {
+	color: blueviolet;
+	cursor: pointer;
+}
+.about:hover {
+	color: pink;
+}
+.signin:hover {
+	color: green;
+}
+.register:hover {
+	color: gold;
 }
