@@ -8,7 +8,7 @@ def run_recognition(video_dir):
     # OpenCV setup
     face_cascade = cv2.CascadeClassifier("./cascades/data/haarcascade_frontalface_alt2.xml")
     eyes_cascade = cv2.CascadeClassifier("./cascades/data/haarcascade_eye.xml")
-    cap = cv2.VideoCapture("/Users/jamesyaputra/Desktop/video.mp4")
+    cap = cv2.VideoCapture(video_dir)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Keras model setup
