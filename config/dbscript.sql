@@ -9,20 +9,23 @@ CREATE TABLE sessionTable (
     time VARCHAR(8),
     grammarScore NUMERIC,
     facialScore NUMERIC,
-    PRIMARY KEY sessionid,
-    FOREIGN KEY (userid) REFERENCES users(userid),
+    PRIMARY KEY (sessionid),
+    FOREIGN KEY (userid) REFERENCES users(userid)
 );
 
 CREATE TABLE question (
-    questionid VARCHAR(8),
+    questionid VARCHAR(8) PRIMARY KEY,
     question VARCHAR(256)
 );
 
 CREATE TABLE answer (
-    sessionid VARCHAR(8) REFERENCES users,
-    questionid VARCHAR(256) REFERENCES question,
+    answerid VARCHAR(8) PRIMARY KEY,
+    sessionid VARCHAR(8),
+    questionid VARCHAR(256),
     video VARCHAR(256),
-    transcript VARCHAR,
+    transcript LONGTEXT,
     grammarScore NUMERIC,
-    facialScore NUMERIC
+    facialScore NUMERIC,
+    FOREIGN KEY (sessionid) REFERENCES sessionTable(sessionid),
+    FOREIGN KEY (questionid) REFERENCES question(questionid)
 );
