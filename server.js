@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require("path");
+const mysql = require("mysql");
+
 const app = express();
 
 const flash = require('connect-flash');
 
 // routes ================================
-require('./app/routes.js')(app, database, auth);
+require('./app/routes.js')(app, connection);
 
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
