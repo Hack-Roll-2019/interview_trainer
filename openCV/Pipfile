@@ -10,7 +10,10 @@ opencv-contrib-python = "*"
 tensorflow = "*"
 numpy = "*"
 keras = "*"
-pyyaml = ">=4.2b1"
+pyyaml = "*"
+imutils = "*"
+dlib = "*"
+scipy = "*"
 
 [requires]
 python_version = "3.6"

@@ -1,19 +1,31 @@
 import sys
 import cv2
 import numpy as np
+from pathlib import Path
 from keras.preprocessing import image
 from keras.models import model_from_json
 
 def run_recognition(video_dir):
     # OpenCV setup
-    face_cascade = cv2.CascadeClassifier("./cascades/data/haarcascade_frontalface_alt2.xml")
-    eyes_cascade = cv2.CascadeClassifier("./cascades/data/haarcascade_eye.xml")
+    cascades_folder = Path("./cascades/data/")
+
+    face_cascade_file = cascades_folder / "haarcascade_frontalface_alt2.xml"
+    face_cascade = cv2.CascadeClassifier(face_cascade_file.as_posix())
+
+    eyes_cascade_file = cascades_folder / "haarcascade_eye.xml"
+    eyes_cascade = cv2.CascadeClassifier(eyes_cascade_file.as_posix())
+
     cap = cv2.VideoCapture(video_dir)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Keras model setup
-    model = model_from_json(open("./models/emotions_model_v1.0.json", "r").read())
-    model.load_weights("./weights/emotions_model_weights.h5")
+    model_folder = Path("./models/")
+    model_file = model_folder / "emotions_model_v1.0.json"
+    model = model_from_json(open(model_file.as_posix(), "r").read())
+
+    weights_folder = Path("./weights/")
+    weights_file = weights_folder / "emotions_model_weights.h5"
+    model.load_weights(weights_file.as_posix())
 
     emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
 
@@ -67,4 +79,4 @@ def run_recognition(video_dir):
 
 if __name__ == "__main__":
     percentage = run_recognition(sys.argv[1])
-    print(percentage)
+    print(round(percentage, 2))
