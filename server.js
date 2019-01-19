@@ -2,6 +2,16 @@ const express = require('express');
 const path = require("path");
 const mysql = require("mysql");
 
+const spawn = require('child_process').spawn,
+
+    // directory naming should be fixed to allow for both Windows and Mac
+    // video directory should be replaced with var containing video link
+ dummy  = spawn('python', ['openCV/main.py', 'E:/HackRoll/videoplayback.mp4']);
+
+dummy.stdout.on('data', (data) => {
+    console.log(data)
+});
+
 const app = express();
 
 const flash = require('connect-flash');
