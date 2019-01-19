@@ -1,12 +1,13 @@
+import sys
 import cv2
 import numpy as np
 from keras.preprocessing import image
 from keras.models import model_from_json
 
-def run_recognition():
+def run_recognition(video_dir):
     # OpenCV setup
     face_cascade = cv2.CascadeClassifier("./cascades/data/haarcascade_frontalface_alt2.xml")
-    cap = cv2.VideoCapture("./videos/video.mp4")
+    cap = cv2.VideoCapture(video_dir)
     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     # Keras model setup
@@ -62,5 +63,5 @@ def run_recognition():
         return 0
 
 if __name__ == "__main__":
-    percentage = run_recognition()
+    percentage = run_recognition(sys.argv[1])
     print(percentage)
