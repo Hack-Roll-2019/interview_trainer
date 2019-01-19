@@ -6,6 +6,21 @@ const app = express();
 
 const flash = require('connect-flash');
 
+const connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'root',
+	database: 'hacknroll'
+});
+
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: 'https://interview-excel.firebaseio.com'
+// });
+
+// const database = admin.database();
+// const auth = admin.auth();
+
 // routes ================================
 require('./app/routes.js')(app, connection);
 
@@ -15,11 +30,3 @@ app.set('view engine', 'ejs');
 
 const server = app.listen(5000, process.env.IP);
 console.log("Server running at localhost:5000");
-
-var sys   = require('sys'),
-    spawn = require('child_process').spawn,
-    dummy  = spawn('python', ['openCV/main.py', '/Users/jamesyaputra/Dekstop/video.mp4']);
-
-dummy.stdout.on('data', function(data) {
-    sys.print(data.toString());
-});
