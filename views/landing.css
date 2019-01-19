@@ -27,12 +27,12 @@ ul.nav {
   margin: 0;
   padding: 0;
 }
-li {
+li.nav {
 	float: right;
 	display: inline-block;
 	margin: 10px;
 }
-a {
+a.nav {
 	color: white;
 	font-size: 15px;
 	line-height: 30px;
