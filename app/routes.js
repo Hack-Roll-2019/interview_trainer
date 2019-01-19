@@ -14,15 +14,6 @@ module.exports = (app, connection) => {
         res.render("signup.ejs");
     });
 
-    app.get('/createTable', (req, res) => {
-        const sql = fs.readFileSync('./config/dbscript.sql').toString();
-        connection.query(sql, (err, result) => {
-            if (err) throw err;
-            res.send("Table created");
-        })
-    });
-
-
     app.get('/interview/:id', (req, res) => {    
         console.log("request query url\n" + req.query.url);
         

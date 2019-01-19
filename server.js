@@ -2,19 +2,33 @@ const express = require('express');
 const path = require("path");
 const mysql = require("mysql");
 
+const spawn = require('child_process').spawn,
+
+    // directory naming should be fixed to allow for both Windows and Mac
+    // video directory should be replaced with var containing video link
+ dummy  = spawn('python', ['openCV/main.py', 'E:/HackRoll/videoplayback.mp4']);
+
+dummy.stdout.on('data', (data) => {
+    console.log(data)
+});
+
 const app = express();
 
 const flash = require('connect-flash');
 
-const admin = require('firebase-admin');
 const serviceAccount = require('./interview-excel-firebase-adminsdk-lqfnx-2e79357d5a.json');
 
 const connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: 'root',
-	database: 'hacknroll'
+    password: 'root',
+    database: 'interview_excel'
 });
+
+connection.connect(err => {
+    if (err) throw err;
+    console.log("Connected");
+})
 
 
 // admin.initializeApp({
