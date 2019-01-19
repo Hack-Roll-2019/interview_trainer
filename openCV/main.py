@@ -28,7 +28,7 @@ def run_recognition(video_dir):
     emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
 
     happy_count = 0
-    if (cap.isOpened() != False): 
+    if (cap.isOpened() == True): 
         while (cap.isOpened()):
             ret, frame = cap.read()
             
