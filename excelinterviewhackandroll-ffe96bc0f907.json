@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "excelinterviewhackandroll",
+  "private_key_id": "ffe96bc0f907d792fa800071c4285277e21dc639",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCGJwiOQE2dZn+i\nznJZjjZNsTpl5pQSDWQNph6guU6qg1V7XlgaizdIcf3WqFacOl+MfVHrny4hhWUV\np9dFilxvW+0zvyrSnxasMFV/SMVK5DiYX/0gHpMK6zfqNpTPye5LEiuoGa27CLC8\n8PG9A157wfQJTdMokq2vDxd2RjVscg85rp90XtGiyck/hhsqZOWAXKvcaZZhzBfJ\nOHI7o9xNAoIEnTk+nIaemuPJGzfP4Cx3MeOnyQSUhgoz0M0ynE2RqKqxCYsrVBjn\nCMwDoUB9kjbCFVRke1fhDmFlv0NbDlBcbT47DJKomRn+CtsJJxatSH1R0z9avHuJ\nMmdvgxyRAgMBAAECggEAJ6M43+8X/73dUJl3KAbg/Ku0+Y7biUnzmiTPP+YA3FjZ\n1Q3XMmCYAQvNWLN8g8SrnrMYlWn/E2B6sZ9Z9+4dybl7qKJ/YKQo6s+NM4Ko6Kvu\nHPefrvHZuIwvhUCDT7H2eq/vvkd4EZ9LuUfn5VUtgZuZI3afQYm1T9hBsmykNFpB\npjYozSFSILHXAe3xPvNSJoitZKUXsiAkV/U20sg3wunoUL1AlyNJJJBlXkUaBpa5\nTNuamdaiVle1OY+QXO+BOuajhDDWJaZ0l2E5yeTVnZz3GJm8e/xnFnDWs76nCDS0\nX9rfRye9a6bTRRfk/7xDNWT6353fqGeiC+1YzMA3UQKBgQC8cyT38b2ksLcPof/q\n0e63bTnFJoY1Bt8MxoC+7F+QEmMC4LkP6l/5LWV55c1n2jVKDSOXRokW9HugcNA4\nZfpDgelUqAxSrLrzNwTR3UdtTslaoMEWQYg7ejYpwvpj+2yB7eCy7hcPghBORCk2\nT4Qb8O0Es2jxPccTvnweI7VXIwKBgQC2PV2C32inqEA1C0s8mi+fDuvaNoQwWCAY\nEjD5YLr7wS9KwJyYUovD9xWoupr2dij0qfpQ9iXoe5QEUWbvRfH3u4/DdnMQHOr6\ndYEh7a4SZZa3/cgXkCN0/meC7npF0gS9gJdzAEssRieCAprOqkjG/uFCFwdEdWLW\niCRgUyQSuwKBgCN98C1+awA0hBW+pgtcxH/pY2L9MXOVOrcWP7M1o33n6JvnJROZ\nScANS7pcjIYNs9Ghjd103GblXs9F0AF/O1Yxhnd6Ou/rNj6OUysPaN9uYj/eXN9L\nMlQ5XTAaV7wy4ynJWnN4ogE6tsV20ug2q6PziUBEZfRhdTgDvS6T/RhPAoGAU8y0\nC1IgFbhQjhO7bQqZi1KZMaaP8osTdv4mdwX79XhH/t/DImgSzPH5i7UDPQHoo1jm\nOgR2OglZbwLfindnZLtiyEbXcjlZ9AHEd42L1fnQ7JpOQEePhmTVxGdU4nZIp7tR\n6RfheWJpGGeKOC4leRwLCRD9zoUMBgpkb8bLd7ECgYAf2aooWF+RSvtl/Plk+lcc\nI0b+W4WjnYqnIdN2zD9BzH1u5QvXRH8s1i5izHITVowmTziBPAPin1zHkIH5yOVv\nnZXc0Y6yKXb92lQ7DqSnC8hWZVtVIm7HekuCiia+ThX3i4VtabYIUAkridQ5CXRu\nmOSG1gpJ7z4tDqWZBS7TuQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "owner-472@excelinterviewhackandroll.iam.gserviceaccount.com",
+  "client_id": "112956587642266334331",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/owner-472%40excelinterviewhackandroll.iam.gserviceaccount.com"
+}
