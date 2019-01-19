@@ -7,6 +7,7 @@ def run_recognition():
     # OpenCV setup
     face_cascade = cv2.CascadeClassifier("./cascades/data/haarcascade_frontalface_alt2.xml")
     cap = cv2.VideoCapture("/Users/jamesyaputra/Desktop/video.mp4")
+    frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
     if (cap.isOpened() == False): 
         print("Error opening video stream or file")
@@ -17,8 +18,13 @@ def run_recognition():
 
     emotions = ('angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral')
 
+    happy_count = 0
     while (cap.isOpened()):
         ret, frame = cap.read()
+        
+        if (np.shape(frame) == ()):
+            break
+
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, scaleFactor = 1.1, minNeighbors = 5)
 
@@ -41,13 +47,19 @@ def run_recognition():
             max_index = np.argmax(predictions[0])
             emotion = emotions[max_index]
 
+            if (emotion == "happy"):
+                happy_count += 1
             cv2.putText(frame, emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
 
         cv2.imshow("frame", frame)
         if (cv2.waitKey(20) & 0xFF == ord("q")):
             break
 
-if __name__ == "__main__":
-    run_recognition()
     cap.release()
     cv2.destroyAllWindows()
+
+    return(happy_count / frame_count)
+
+if __name__ == "__main__":
+    percentage = run_recognition()
+    print(percentage)
