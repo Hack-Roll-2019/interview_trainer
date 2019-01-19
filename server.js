@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require("path");
+const mysql = require("mysql");
+
 const app = express();
 
 const flash = require('connect-flash');
@@ -7,16 +9,24 @@ const flash = require('connect-flash');
 const admin = require('firebase-admin');
 const serviceAccount = require('./interview-excel-firebase-adminsdk-lqfnx-2e79357d5a.json');
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://interview-excel.firebaseio.com'
+const connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+	password: 'root',
+	database: 'hacknroll'
 });
 
-const database = admin.database();
-const auth = admin.auth();
+
+// admin.initializeApp({
+//     credential: admin.credential.cert(serviceAccount),
+//     databaseURL: 'https://interview-excel.firebaseio.com'
+// });
+
+// const database = admin.database();
+// const auth = admin.auth();
 
 // routes ================================
-require('./app/routes.js')(app, database, auth);
+require('./app/routes.js')(app, connection);
 
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));

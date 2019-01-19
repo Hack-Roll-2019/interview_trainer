@@ -9,10 +9,15 @@
   "author": "Kristo, James, Matthew, William",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/speech": "^2.2.0",
+    "@google-cloud/storage": "^2.3.4",
+    "@google-cloud/video-intelligence": "^1.5.0",
+    "axios": "^0.18.0",
     "connect-flash": "^0.1.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "firebase-admin": "^6.5.0",
-    "firebaseui": "^3.5.2"
+    "firebaseui": "^3.5.2",
+    "mysql": "^2.16.0"
   }
 }
