@@ -6,8 +6,6 @@ const app = express();
 
 const flash = require('connect-flash');
 
-const admin = require('firebase-admin');
-const serviceAccount = require('./interview-excel-firebase-adminsdk-lqfnx-2e79357d5a.json');
 
 const connection = mysql.createConnection({
 	host: 'localhost',

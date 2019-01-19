@@ -106,7 +106,7 @@ function onBtnStopClicked(){
 	recBtn.disabled = true;
 	pauseResBtn.disabled = true;
 	stopBtn.disabled = true;
-	alert("Interview successfully recorded, save the video in a folder called \"interview\" in desktop and dont change the file name" );
+	alert("Interview successfully recorded, save the video in a folder called \"interview\" in desktop and dont change the file name");
 	
 }
 
