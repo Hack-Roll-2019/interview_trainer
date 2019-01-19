@@ -56,7 +56,10 @@ def run_recognition():
     cap.release()
     cv2.destroyAllWindows()
 
-    return(happy_count / frame_count)
+    if (frame_count != 0):
+        return(happy_count / frame_count)
+    else:
+        return 0
 
 if __name__ == "__main__":
     percentage = run_recognition()
