@@ -15,13 +15,13 @@ module.exports = (app) => {
         res.render("signup.ejs");
     });
 
-    app.get('/interview/:id', async (req, res) => {    
+    app.get('/interview/:id', (req, res) => {    
         const url = req.query.url;
 
         let coefficient = ''
         emotionRecognition.listen("/Users/jamesyaputra/Desktop/video.mp4", data => {
             while (data == null) {
-                setTimeout(data, 500)
+                setTimeout(data, 250)
             }
             console.log("done")
             coefficient = data;
@@ -32,7 +32,10 @@ module.exports = (app) => {
                 console.log("Done with promises");
                 return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
             })
-            .then(arr => res.send(arr))
+            .then(arr => {
+                arr.push(coefficient)
+                res.send(arr)
+            })
             .catch(err => {
                 console.error(err);
             });

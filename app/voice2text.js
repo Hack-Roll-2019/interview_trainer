@@ -10,7 +10,7 @@ module.exports.getRandomQuestion = () => {
 }
 
 module.exports.transformVideoToText = async function (path) {
-    process.env.GOOGLE_APPLICATION_CREDENTIALS = "E:/HackRoll/excelinterviewhackandroll-e46c529cca7b.json";
+    process.env.GOOGLE_APPLICATION_CREDENTIALS = "/Users/jamesyaputra/Workspace/HackRoll/excelinterviewhackandroll-e46c529cca7b.json";
     
     // Imports the Google Cloud Video Intelligence library
     const videoIntelligence = require('@google-cloud/video-intelligence');
@@ -46,12 +46,12 @@ module.exports.transformVideoToText = async function (path) {
     operationResult.annotationResults[0].speechTranscriptions[0]
         .alternatives[0];
 
-    alternative.words.forEach(wordInfo => {
-        const start_time =
-            wordInfo.startTime.seconds + wordInfo.startTime.nanos * 1e-9;
-        const end_time = wordInfo.endTime.seconds + wordInfo.endTime.nanos * 1e-9;
-        console.log('\t' + start_time + 's - ' + end_time + 's: ' + wordInfo.word);
-    });
+    // alternative.words.forEach(wordInfo => {
+    //     const start_time =
+    //         wordInfo.startTime.seconds + wordInfo.startTime.nanos * 1e-9;
+    //     const end_time = wordInfo.endTime.seconds + wordInfo.endTime.nanos * 1e-9;
+    //     console.log('\t' + start_time + 's - ' + end_time + 's: ' + wordInfo.word);
+    // });
 
     return alternative.transcript;
 }
@@ -67,6 +67,7 @@ module.exports.getGrammarCoefficient = async function (message) {
     })
     .then(res => {
         const errorCount = res.data.errors.length;
+        console.log("Message" + message)
         console.log(errorCount);
         const numWords = message.split(' ').length;
         console.log("Calculating gramar coefficient:  " + (errorCount/numWords).toPrecision(3));

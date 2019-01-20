@@ -16,6 +16,7 @@
     "connect-flash": "^0.1.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "firebase": "^5.8.0",
     "firebase-admin": "^6.5.0",
     "firebaseui": "^3.5.2",
     "mysql": "^2.16.0"
