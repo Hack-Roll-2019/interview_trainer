@@ -19,17 +19,28 @@ module.exports = (app, connection) => {
     });
 
     app.get('/interview/:id', (req, res) => {    
-        console.log("request query url\n" + req.query.url);
-        
-        voice2text.transformVideoToText(req.query.url)
-        .then(transcript => {
-            console.log("Done with promises");
-            return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
-        })
-        .then(arr => res.send(arr))
-        .catch(err => {
-            console.error(err);
+        const sql = `SELECT q.question FROM question q WHERE q.questionid = ${req.params.id}`;
+        var nextId = req.params.id;
+        console.log(nextId);
+        connection.query(sql, (err, result) => {
+            if (err) throw err;
+            res.render("interview.ejs", {
+                question: result[0].question,
+                id: nextId
+            })
         });
+
+
+        
+        // voice2text.transformVideoToText(req.query.url)
+        // .then(transcript => {
+        //     console.log("Done with promises");
+        //     return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
+        // })
+        // .then(arr => res.send(arr))
+        // .catch(err => {
+        //     console.error(err);
+        // });
 
     });
 
