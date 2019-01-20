@@ -72,7 +72,7 @@ module.exports.getGrammarCoefficient = async function (message) {
         const numWords = message.split(' ').length;
         console.log("Calculating gramar coefficient:  " + (errorCount/numWords).toPrecision(3));
         
-        return (errorCount/numWords);
+        return (errorCount/numWords).toPrecision(3);
     })
     .catch(err => console.log(err))
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/profile.css">
+</head>
+<body>
+	<div class="container">
+		<div class="navigation-bar">
+			<ul class="nav">
+				<li><a href="#">SIGN OUT</a></li>
+				  <li><a href="/interview/1">PRACTICE</a></li>
+				  <li class="active"><a class="active" href="">PROFILE</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4 col-xs-offset-4">
+				<img src="https://www.eharmony.co.uk/dating-advice/wp-content/uploads/2014/01/profile-picture-960x640.jpg"class="profile-pic">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4 col-xs-offset-4">
+				<h3>Matthew Alexander</h3>
+				<p>Biography and stuff</p>
+				<p>email@yahoo.com</p>
+				<p>NUS Computer Science Student</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2 col-xs-offset-4">
+				<h5 class="number">No of Interviews</h5>
+			</div>
+			<div class="col-xs-2 ">
+				<h5 class="score">Average Score</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-2 col-xs-offset-4">
+				<h5 class="number">27</h5>
+			</div>
+			<div class="col-xs-2">
+				<h5 class="score">75</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="btn-group">
+			  <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    VIEW INTERVIEWS <span class="caret"></span>
+			  </button>
+			  <ul class="dropdown-menu">
+					<% sessions.forEach(function(row){ %>
+						<li><a href="/result/<%= row.sessionid %>">Interview <%= row.sessionid %>: <%= (row.facialscore + row.grammarscore)/2 %></a></li>
+					<% }) %>
+					
+			  </ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -30,7 +30,8 @@ module.exports = (app, connection) => {
         const url = req.query.url;
 
         let coefficient = ''
-        emotionRecognition.listen("/Users/jamesyaputra/Desktop/video.mp4", data => {
+        
+        emotionRecognition.listen(url, data => {
             while (data == null) {
                 setTimeout(data, 250)
             }
@@ -65,12 +66,12 @@ module.exports = (app, connection) => {
         connection.query(sqlcount, (err, result) => {
             if (err) throw err;
             console.log(result[0].count);
-            if(result[0].count >= parseInt(req.params.id)){
+            if(result[0].count == null || result[0].count >= parseInt(req.params.id)){
                 //TODO: Save link to DB
 
                 let sql = `SELECT q.question FROM question q WHERE q.questionid = '${req.params.id}'`;
                 var nextId = parseInt(req.params.id) + 1;
-                console.log(nextId);
+                console.log("nextid: " + nextId);
                 connection.query(sql, (err, result) => {
                     if (err) throw err;
                     res.render("interview.ejs", {
