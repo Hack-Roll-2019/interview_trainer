@@ -17,8 +17,12 @@ module.exports = (app, connection) => {
     });
 
     app.get('/profile', (req, res) => {
-        res.render("profile.ejs", {
-            
+        let sql = `SELECT s.sessionid, s.grammarscore, s.facialscore FROM sessionTable s`;
+        connection.query(sql, (err, result) => {
+            if (err) throw err;
+            res.render("profile.ejs", {
+                sessions: result
+            });
         });
     });
 
@@ -61,7 +65,9 @@ module.exports = (app, connection) => {
         connection.query(sqlcount, (err, result) => {
             if (err) throw err;
             console.log(result[0].count);
-            if(result[0].count >= parseInt(req.params.id)) {
+            if(result[0].count >= parseInt(req.params.id)){
+                //TODO: Save link to DB
+
                 let sql = `SELECT q.question FROM question q WHERE q.questionid = '${req.params.id}'`;
                 var nextId = parseInt(req.params.id) + 1;
                 console.log(nextId);
@@ -91,10 +97,22 @@ module.exports = (app, connection) => {
     });
 
 
-    app.get('/results', (req, res) => {
-        res.render('results.ejs', {
-
-        })
+    app.get('/result/:id', (req, res) => {
+        let sql = `SELECT a.video, a.transcript, q.questionid, q.question
+        FROM answer a, question q
+        WHERE a.questionid = q.questionid AND a.sessionid = ${req.params.id}
+        ORDER BY q.questionid;`;
+        connection.query(sql, (err, result) => {
+            if (err) throw err;
+            let sqlses = `SELECT s.sessionid, s.grammarscore, s.facialscore FROM sessionTable s WHERE s.sessionid = ${req.params.id};`;
+            connection.query(sqlses, (err, resultses) => {
+                    if (err) throw err;
+                    res.render("result.ejs", {
+                        result: result,
+                        session: resultses
+                });
+            });
+        });
     })
 
     app.get('/thankyou', (req, res) => {

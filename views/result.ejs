@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/result.css">
+	<title></title>
+</head>
+<body>
+	<div class="container">
+		<div class="navigation-bar">
+			<ul class="nav">
+				<li><a href="#">SIGN OUT</a></li>
+				  <li><a href="/interview/1">PRACTICE</a></li>
+				  <li class="active"><a class="active" href="">PROFILE</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-4 col-xs-offset-4">
+				<h1>Interview <%= session[0].sessionid %></h1>
+			</div>
+			<div class="col-xs-4">
+				<h3>Your Score: <%= session[0].sessionid %>: <%= (session[0].facialscore + session[0].grammarscore)/2 %></h3>
+			</div>
+		</div>
+		<hr>
+		<% result.forEach(function(row){ %>
+			<div class="row">
+				<div class="col-xs-6">
+					<h3>Question <%= row.questionid %> : <%= row.question %></h3>
+					<video width="320" height="240" controls="controls">  
+						<source src="file:///<%= row.video %>" type="video/webm"/>   
+					</video> 
+				</div>
+				<div class="col-xs-6">
+					<h3>Review</h3>
+					<p><%= row.transcript %></p>
+				</div>
+			</div>
+		<% }) %>
+	</div>
+</body>
+</html>
