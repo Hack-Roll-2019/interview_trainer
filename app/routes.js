@@ -15,17 +15,26 @@ module.exports = (app, connection) => {
     });
 
     app.get('/interview/:id', (req, res) => {    
-        console.log("request query url\n" + req.query.url);
+        const sql = `SELECT question FROM question WHERE questionid = ${req.params.id}`;
         
-        voice2text.transformVideoToText(req.query.url)
-        .then(transcript => {
-            console.log("Done with promises");
-            return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
-        })
-        .then(arr => res.send(arr))
-        .catch(err => {
-            console.error(err);
+        connection.query(sql, (err, result) => {
+            if (err) throw err;
+            res.render("interview.html", {
+                question: result
+            })
         });
+
+
+        
+        // voice2text.transformVideoToText(req.query.url)
+        // .then(transcript => {
+        //     console.log("Done with promises");
+        //     return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
+        // })
+        // .then(arr => res.send(arr))
+        // .catch(err => {
+        //     console.error(err);
+        // });
 
     });
 
