@@ -19,18 +19,16 @@ module.exports = (app, connection) => {
     });
 
     app.get('/interview/:id', (req, res) => {    
-        const sql = `SELECT q.question FROM question q WHERE q.questionid = ${req.params.id}`;
-        var nextId = req.params.id;
+        let sql = `SELECT q.question FROM question q WHERE q.questionid = '${req.params.id}'`;
+        var nextId = parseInt(req.params.id) + 1;
         console.log(nextId);
         connection.query(sql, (err, result) => {
             if (err) throw err;
             res.render("interview.ejs", {
-                question: result[0].question,
+                question: result[0],
                 id: nextId
             })
         });
-
-
         
         // voice2text.transformVideoToText(req.query.url)
         // .then(transcript => {
@@ -43,6 +41,8 @@ module.exports = (app, connection) => {
         // });
 
     });
+
+    app.get('')
 
     app.get('/results', (req, res) => {
 
