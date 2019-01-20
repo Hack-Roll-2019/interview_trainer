@@ -10,7 +10,7 @@ module.exports.getRandomQuestion = () => {
 }
 
 module.exports.transformVideoToText = async function (path) {
-    process.env.GOOGLE_APPLICATION_CREDENTIALS = "/Users/jamesyaputra/Workspace/HackRoll/excelinterviewhackandroll-e46c529cca7b.json";
+    process.env.GOOGLE_APPLICATION_CREDENTIALS = "E:/HackRoll/excelinterviewhackandroll-e46c529cca7b.json";
     
     // Imports the Google Cloud Video Intelligence library
     const videoIntelligence = require('@google-cloud/video-intelligence');

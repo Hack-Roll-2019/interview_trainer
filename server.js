@@ -7,7 +7,10 @@ const app = express();
 
 const flash = require('connect-flash');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8344ce903dcec8a5d112a12348ca7ddac79d1455
 const connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
