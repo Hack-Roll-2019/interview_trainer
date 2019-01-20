@@ -15,20 +15,33 @@ module.exports = (app, connection) => {
     });
 
     app.get('/profile', (req, res) => {
-        res.render("profile.ejs");
+        res.render("profile.ejs", {
+            
+        });
     });
 
     app.get('/interview/:id', (req, res) => {    
-        let sql = `SELECT q.question FROM question q WHERE q.questionid = '${req.params.id}'`;
-        var nextId = parseInt(req.params.id) + 1;
-        console.log(nextId);
-        connection.query(sql, (err, result) => {
+        let sqlcount = `SELECT COUNT(q.questionid) as count FROM question q`;
+        connection.query(sqlcount, (err, result) => {
             if (err) throw err;
-            res.render("interview.ejs", {
-                question: result[0],
-                id: nextId
-            })
+            console.log(result[0].count);
+            if(result[0].count >= parseInt(req.params.id)){
+                let sql = `SELECT q.question FROM question q WHERE q.questionid = '${req.params.id}'`;
+                var nextId = parseInt(req.params.id) + 1;
+                console.log(nextId);
+                connection.query(sql, (err, result) => {
+                    if (err) throw err;
+                    res.render("interview.ejs", {
+                        question: result[0],
+                        id: nextId
+                    })
+                });
+            } else {
+                res.redirect("/thankyou");
+            }
         });
+
+        
         
         // voice2text.transformVideoToText(req.query.url)
         // .then(transcript => {
@@ -42,10 +55,15 @@ module.exports = (app, connection) => {
 
     });
 
-    app.get('')
 
     app.get('/results', (req, res) => {
+        res.render('results.ejs', {
 
+        })
+    })
+
+    app.get('/thankyou', (req, res) => {
+        res.render('thankyou.ejs');
     })
 
 }   
