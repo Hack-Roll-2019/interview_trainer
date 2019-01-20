@@ -62,7 +62,7 @@ audio {
 }
 
 body {
-  font-family: 'Merriweather', serif;
+  font-family: 'Inconsolata', monospace;
   margin: 0;
   padding: 1em;
   word-break: break-word;

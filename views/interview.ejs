@@ -1,4 +1,31 @@
-'use strict';
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/interview.css">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+
+            <h1><%= question.question %></h1>
+            <h2>Hit the record button once you are ready, allow the browser to use the microphone and webcam, stop, and download. Hit next/finish once you are ready</h2>
+            <video controls autoplay></video><br>
+            <button id="rec" class="btn btn-danger" onclick="onBtnRecordClicked()">Record</button>
+            <button id="pauseRes" class="btn btn-info"   onclick="onPauseResumeClicked()" disabled>Pause</button>
+            <button id="stop" class="btn btn-primary" onclick="onBtnStopClicked()" disabled>Stop</button>
+        </div>
+        <div class="row"><a id="downloadLink" download="mediarecorder.mp4" name="mediarecorder.webm" href></a></div>
+        <div class="row"><a id="nextLink" href="/interview/<%= id %>?url=" onclick="addURL(this)"></a></div>
+        <p id="data"></p>
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+        <!-- <script src="/interview.js"></script> -->
+
+        <script>
+        'use strict';
 
 /* globals MediaRecorder */
 // Spec is at http://dvcs.w3.org/hg/dap/raw-file/tip/media-stream-capture/RecordingProposal.html
@@ -200,4 +227,6 @@ function getBrowser(){
 
 
 	return browserName;
-}
+}</script>
+</body>
+</html>

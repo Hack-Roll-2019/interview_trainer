@@ -8,7 +8,7 @@ body{
 	background-color: #606468;
 	color: white;
 	text-align: center;
-	font-family: 'Merriweather', serif;
+	font-family: 'Inconsolata', monospace;
 	font-size: 1.6em;
 }
 
@@ -46,4 +46,14 @@ a {
 }
 .btn-primary {
 	background-color: #003366;
+}
+a{
+	word-spacing: 2px;
+}
+.active {
+	background-color: white;
+	color: blue;
+}
+.active:hover {
+	color: blue;
 }
