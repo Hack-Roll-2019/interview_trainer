@@ -47,3 +47,13 @@ a {
 .btn-primary {
 	background-color: #003366;
 }
+a{
+	word-spacing: 2px;
+}
+.active {
+	background-color: white;
+	color: blue;
+}
+.active:hover {
+	color: blue;
+}
