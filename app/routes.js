@@ -45,7 +45,7 @@ module.exports = (app) => {
                 return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
             })
             .then(arr => {
-                arr.push(coefficient)
+                arr.push(data)
                 res.send(arr)
             })
             .catch(err => {

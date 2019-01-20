@@ -7,22 +7,12 @@ const app = express();
 
 const flash = require('connect-flash');
 
-<<<<<<< HEAD
 const connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
     password: 'root',
     database: 'interview_excel'
 });
-=======
-
-// const connection = mysql.createConnection({
-// 	host: 'localhost',
-// 	user: 'root',
-//     password: 'root',
-//     database: 'interview_excel'
-// });
->>>>>>> 74713d8cdb1cd123589cf2da2a1f221c34cc4dd0
 
 // connection.connect(err => {
 //     if (err) throw err;
