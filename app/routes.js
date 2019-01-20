@@ -46,7 +46,6 @@ module.exports = (app, connection) => {
             })
             .then(arr => {
                 arr.push(data)
-<<<<<<< HEAD
                 console.log("Array: " + arr.toString())
                 connection.query(`
                 INSERT INTO
@@ -71,9 +70,6 @@ module.exports = (app, connection) => {
                 })
                 }
                 
-=======
-                res.send(arr)
->>>>>>> 8344ce903dcec8a5d112a12348ca7ddac79d1455
             })
             .catch(err => {
                 console.error(err);
