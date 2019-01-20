@@ -19,12 +19,14 @@ module.exports = (app, connection) => {
     });
 
     app.get('/interview/:id', (req, res) => {    
-        const sql = `SELECT question FROM question WHERE questionid = ${req.params.id}`;
-        
+        const sql = `SELECT q.question FROM question q WHERE q.questionid = ${req.params.id}`;
+        var nextId = req.params.id;
+        console.log(nextId);
         connection.query(sql, (err, result) => {
             if (err) throw err;
-            res.render("interview.html", {
-                question: result
+            res.render("interview.ejs", {
+                question: result[0].question,
+                id: nextId
             })
         });
 
