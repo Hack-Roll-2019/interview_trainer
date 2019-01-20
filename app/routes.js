@@ -1,5 +1,7 @@
 const voice2text = require('./voice2text.js');
+const emotionRecognition = require('../openCV/listen.js');
 const fs = require('fs');
+const moment = require('moment');
 
 module.exports = (app, connection) => {
     app.get('/', (req, res) => {
@@ -25,16 +27,65 @@ module.exports = (app, connection) => {
     });
 
     app.get('/interview/:id', (req, res) => {    
+        const url = req.query.url;
+
+        let coefficient = ''
+        
+        emotionRecognition.listen(url, data => {
+            while (data == null) {
+                setTimeout(data, 250)
+            }
+            console.log("done")
+            //coefficient = data;
+            const currDate = moment()
+
+            voice2text.transformVideoToText(req.query.url)
+            .then(transcript => {
+                console.log("Getting grammar coefficient");
+                return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
+            })
+            .then(arr => {
+                arr.push(data)
+                console.log("Array: " + arr.toString())
+                connection.query(`
+                INSERT INTO
+                  sessionTable
+                VALUES
+                  (
+                    '${currDate.second()}',
+                    '1',
+                    ${parseFloat(arr[0])},
+                    ${parseFloat(arr[2])}
+                  );
+                `, (err, result) => {
+                        if (err) throw err;
+                        console.log("result " + result);
+                })
+                if (req.params.id > 1) {
+                    connection.query(`
+                    INSERT INTO answer VALUES('${currDate.second()}', '${currDate.second()}', '${parseInt(req.params.id) - 1}', "link", '${arr[1]}', ${parseFloat(arr[0])}, ${parseFloat(arr[2])});
+                    `, (err, result) => {
+                        if (err) throw err;
+                        console.log("result " + result);
+                })
+                }
+                
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        });
+
         let sqlcount = `SELECT COUNT(q.questionid) as count FROM question q`;
         connection.query(sqlcount, (err, result) => {
             if (err) throw err;
             console.log(result[0].count);
-            if(result[0].count >= parseInt(req.params.id)){
+            if(result[0].count == null || result[0].count >= parseInt(req.params.id)){
                 //TODO: Save link to DB
 
                 let sql = `SELECT q.question FROM question q WHERE q.questionid = '${req.params.id}'`;
                 var nextId = parseInt(req.params.id) + 1;
-                console.log(nextId);
+                console.log("nextid: " + nextId);
                 connection.query(sql, (err, result) => {
                     if (err) throw err;
                     res.render("interview.ejs", {
@@ -46,7 +97,6 @@ module.exports = (app, connection) => {
                 res.redirect("/thankyou");
             }
         });
-
         
         
         // voice2text.transformVideoToText(req.query.url)
@@ -84,4 +134,4 @@ module.exports = (app, connection) => {
         res.render('thankyou.ejs');
     })
 
-}   
+}
