@@ -1,8 +1,9 @@
 const voice2text = require('./voice2text.js');
 const emotionRecognition = require('../openCV/listen.js');
 const fs = require('fs');
+const moment = require('moment');
 
-module.exports = (app) => {
+module.exports = (app, connection) => {
     app.get('/', (req, res) => {
         res.render("landing.ejs");
     });
@@ -31,16 +32,25 @@ module.exports = (app) => {
             }
             console.log("done")
             coefficient = data;
-
+            const currDate = moment()
 
             voice2text.transformVideoToText(req.query.url)
             .then(transcript => {
-                console.log("Done with promises");
+                console.log("Getting grammar coefficient");
                 return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
             })
             .then(arr => {
                 arr.push(coefficient)
-                res.send(arr)
+                connection.query(`
+                    BEGIN;
+                    INSERT INTO sessionTable (sessionid, userid, grammarScore, facialScore) 
+                    VALUES ('${currDate.second()}', '1', ${arr[0]}, ${arr[2]});
+                    INSERT INTO answer (answerid, sessionid, questionid, video, transcript, grammarScore, facialScore)
+                    VALUES ('${currDate.second()}', '${currDate.second()}', '${currDate.second()}', '${url}', '${arr[1]}', ${arr[0]}, ${arr[2]});
+                    COMMIT;`, (err, result) => {
+                        if (err) throw err;
+                        console.log("result " + result);
+                })
             })
             .catch(err => {
                 console.error(err);

@@ -8,20 +8,21 @@ const app = express();
 const flash = require('connect-flash');
 
 
-// const connection = mysql.createConnection({
-// 	host: 'localhost',
-// 	user: 'root',
-//     password: 'root',
-//     database: 'interview_excel'
-// });
+const connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root',
+    password: 'password',
+    database: 'interview_excel',
+    insecureAuth: true
+});
 
-// connection.connect(err => {
-//     if (err) throw err;
-//     console.log("Connected");
-// })
+connection.connect(err => {
+    if (err) throw err;
+    console.log("Connected");
+})
 
 // routes ================================
-require('./app/routes.js')(app);
+require('./app/routes.js')(app, connection);
 
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
