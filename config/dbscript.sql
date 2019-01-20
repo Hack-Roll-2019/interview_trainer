@@ -6,7 +6,6 @@ CREATE TABLE users (
 CREATE TABLE sessionTable (
     sessionid VARCHAR(8),
     userid VARCHAR(8),
-    time VARCHAR(8),
     grammarScore NUMERIC,
     facialScore NUMERIC,
     PRIMARY KEY (sessionid),

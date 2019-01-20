@@ -53,10 +53,10 @@
 			    VIEW INTERVIEWS <span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu">
-			    <li><a href="/result/">Interview 1 Score:70</a></li>
-			    <li><a href="/result/">Interview 2 Score:70</a></li>
-			    <li><a href="/result/">Interview 3 Score:70</a></li>
-			    <li><a href="/result/">Interview 4 Score:70</a></li>
+					<% sessions.forEach(function(row){ %>
+						<li><a href="/result/<%= row.sessionid %>">Interview <%= row.sessionid %>: <%= (row.facialscore + row.grammarscore)/2 %></a></li>
+					<% }) %>
+					
 			  </ul>
 			</div>
 		</div>
