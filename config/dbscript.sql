@@ -28,3 +28,10 @@ CREATE TABLE answer (
     FOREIGN KEY (sessionid) REFERENCES sessionTable(sessionid),
     FOREIGN KEY (questionid) REFERENCES question(questionid)
 );
+
+INSERT INTO user VALUSE("1", "Matthew")
+INSERT INTO question VALUES ("1", "Tell a bit about yourself");
+INSERT INTO question VALUES ("2", "Why are you interested in working for our company?");
+INSERT INTO sessiontable VALUES("1", "1", "0.1", "0.7");
+INSERT INTO answer VALUES("1", "1", "1", "link", "transcript", "0.2", "0.7");
+INSERT INTO answer VALUES("2", "1", "2", "link2", "transcript", "0.0", "0.7");
