@@ -1,0 +1,41 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	scroll-behavior: smooth;
+  }
+body{
+	height: 100%;
+	width: 100%;
+	background-color: #606468;
+	color: white;
+	font-family: 'Slabo 27px', serif;
+	font-size: 1.9em;
+	text-align: center;
+}
+ul.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+	float: right;
+	display: inline-block;
+	margin: 10px;
+}
+a {
+	color: white;
+	font-size: 15px;
+	line-height: 30px;
+}
+h3 {
+	margin: 30px;
+}
+.navigation-bar {
+	margin-bottom: 20px;
+}
+video {
+	max-width: 320px;
+	max-height: 200px;
+}
