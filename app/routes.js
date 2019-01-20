@@ -36,7 +36,7 @@ module.exports = (app, connection) => {
                 setTimeout(data, 250)
             }
             console.log("done")
-            coefficient = data;
+            //coefficient = data;
             const currDate = moment()
 
             voice2text.transformVideoToText(req.query.url)
@@ -45,17 +45,31 @@ module.exports = (app, connection) => {
                 return voice2text.getGrammarCoefficient(transcript).then(coefficient => [coefficient, transcript]);
             })
             .then(arr => {
-                arr.push(coefficient)
+                arr.push(data)
+                console.log("Array: " + arr.toString())
                 connection.query(`
-                    BEGIN;
-                    INSERT INTO sessionTable (sessionid, userid, grammarScore, facialScore) 
-                    VALUES ('${currDate.second()}', '1', ${arr[0]}, ${arr[2]});
-                    INSERT INTO answer (answerid, sessionid, questionid, video, transcript, grammarScore, facialScore)
-                    VALUES ('${currDate.second()}', '${currDate.second()}', '${currDate.second()}', '${url}', '${arr[1]}', ${arr[0]}, ${arr[2]});
-                    COMMIT;`, (err, result) => {
+                INSERT INTO
+                  sessionTable
+                VALUES
+                  (
+                    '${currDate.second()}',
+                    '1',
+                    ${parseFloat(arr[0])},
+                    ${parseFloat(arr[2])}
+                  );
+                `, (err, result) => {
                         if (err) throw err;
                         console.log("result " + result);
                 })
+                if (req.params.id > 1) {
+                    connection.query(`
+                    INSERT INTO answer VALUES('${currDate.second()}', '${currDate.second()}', '${parseInt(req.params.id) - 1}', "link", '${arr[1]}', ${parseFloat(arr[0])}, ${parseFloat(arr[2])});
+                    `, (err, result) => {
+                        if (err) throw err;
+                        console.log("result " + result);
+                })
+                }
+                
             })
             .catch(err => {
                 console.error(err);

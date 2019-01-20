@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 const connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-    password: 'password',
+    password: 'J4m35Y@P',
     database: 'interview_excel',
     insecureAuth: true
 });
