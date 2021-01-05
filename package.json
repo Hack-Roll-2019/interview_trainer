@@ -12,7 +12,7 @@
     "@google-cloud/speech": "^2.2.0",
     "@google-cloud/storage": "^2.3.4",
     "@google-cloud/video-intelligence": "^1.5.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "connect-flash": "^0.1.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
